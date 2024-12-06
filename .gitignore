@@ -1,0 +1,5 @@
+build
+dist
+output.log
+source_git.code-workspace
+__pycache__
