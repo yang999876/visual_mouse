@@ -161,7 +161,7 @@ class GUI(tk.Tk):
 
     def reset_config(self):
         # 重置文本框中的内容为配置文件中的原始值
-        config.read(config_utils.get_config_path())
+        config_utils.read(config_utils.get_config_path())
 
         for (section, key), entry in self.entries.items():
             entry.delete(0, tk.END)  # 清空文本框
@@ -183,7 +183,8 @@ class GUI(tk.Tk):
         # print(program_path)
 
 if __name__ == "__main__":
-    config = ConfigParser()
-    config.read("conf.ini")
-    app = GUI(config)
+    root_path = os.sep.join(os.path.abspath(sys.argv[0]).split(os.sep)[:-1])
+    config_path = os.path.join(root_path, "conf.ini")
+    config_utils.set_config_path(config_path)
+    app = GUI()
     app.mainloop()
